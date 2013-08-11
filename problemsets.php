@@ -13,7 +13,7 @@
 			   <h4>Problem Set ' . $i . '</h4>
 			   <hr>
 			   <a class="btn">View Details</a>
-			   <a class="btn btn-primary pull-right" href="viewer.php?id=ps1">Open Problems</a>
+			   <a class="btn btn-primary pull-right" href="viewer/index.php?id=ps1">Open Problems</a>
       </div>
       </div>';
       }
