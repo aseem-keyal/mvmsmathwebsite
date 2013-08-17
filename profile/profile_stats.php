@@ -10,25 +10,13 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>Questions Seen/Tests Taken</td>
+				<td>Questions Correct on First Try</td>
 				<td>0</td>
-				<td>0%</td>
+				<td>1%</td>
 				<td>0%</td>
 			</tr>
 			<tr>
-				<td>Questions Answered</td>
-				<td>0</td>
-				<td>0%</td>
-				<td>0%</td>
-			</tr>
-			<tr>
-				<td>Questions Omitted</td>
-				<td>0</td>
-				<td>0%</td>
-				<td>0%</td>
-			</tr>
-			<tr>
-				<td>Questions Correct</td>
+				<td>Questions Correct on Second Try</td>
 				<td>0</td>
 				<td>0%</td>
 				<td>0%</td>

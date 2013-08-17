@@ -6,16 +6,26 @@
     <?php include("navbar/navbar.php"); ?>
     <div class="container">
     <?php
+    $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
+    $user_id = $_COOKIE['user_id'];
+    $query = "select problem_sets from groups where members like '%$user_id%';";
+    $res = $mysqli->query($query) or die(mysql_error());
+    while ($row = $res->fetch_assoc()) {
+        extract($row);
+    }
+    error_log($query, 3, "/var/www/my-errors.log");
+    $tables = explode(",",$problem_sets);
 	if (isset($_COOKIE["fname"]))
-        for ($i = 1; $i <= 10; $i++) {
-		echo '<div class="span4">
-			 <div class="well">
-			   <h4>Problem Set ' . $i . '</h4>
-			   <hr>
-			   <a class="btn">View Details</a>
-			   <a class="btn btn-primary pull-right" href="viewer/index.php?id=ps1">Open Problems</a>
-      </div>
-      </div>';
+        foreach ($tables as &$ps) {
+            $number = substr($ps,2);
+            echo '<div class="span4">
+                <div class="well">
+                <h4>Problem Set ' . $number . '</h4>
+                <hr>
+                <a class="btn">View Details</a>
+                <a class="btn btn-primary pull-right" href="viewer/index.php?id=ps' . $number . '">Open Problems</a>
+        </div>
+        </div>';
       }
 	else
         echo '<p>Please log in to see your problem sets.</p>';

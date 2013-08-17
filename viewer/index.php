@@ -8,7 +8,7 @@
             <div class="span12">
                 <div class="well">
                     <a class="btn btn-primary pull-right" href="../problemsets.php">Go back</a>
-                    <h2>Limits Lesson 5</h2>
+                    <h2>Problem Set <?php include("lib.php"); echo substr(sanitize($_GET['id']),2); ?></h2>
                 </div>
             </div>
         </div>
@@ -17,7 +17,6 @@
 	      <form action="check.php" method="post">
 		<?php
 		   include($_SERVER['DOCUMENT_ROOT'] . "/mvmsmath/config.php");
-		   include("lib.php");
 		   echo "<input type=\"hidden\" name=\"id\" value=\"" . sanitize($_GET['id']) . "\">";
 		   ?>
 		<table cellspacing="0" class="table table-striped">
@@ -54,7 +53,7 @@
             </div>
             <div class="span8" style="height: 100%">
                 <div class="well" style="height: 100%">
-                    <object data="Limits.pdf" type="application/pdf" width="100%" height="100%">
+                <object data="../pdfs/<?php echo $problemset_id; ?>.pdf" type="application/pdf" width="100%" height="100%">
                        <p>Looks like you can't view this file.</p>
                     </object>
                 </div>

@@ -3,7 +3,7 @@
 
 	$email = $_POST['email'];
 	$password = $_POST['pwd'];
-	$query = "select * from users where email=";
+	$query = "select * from admins where email=";
 	$query .= "'$email';";
 
 	$mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
@@ -13,7 +13,7 @@
 	   $login_success = False;
 	} else {
 	   $userdata = $result->fetch_assoc();
-	   if (validate_password($password, $userdata['password']) && $userdata['approved'] == 1) { 
+	   if (validate_password($password, $userdata['password'])) { 
 	      $login_success = True;
 	   } else {
 	      $login_success = False;
@@ -29,13 +29,12 @@
 	   else
 	      $expire = time() + 60*60*24;
 
-	   setcookie("user_id", $userdata['id'], $expire, '/');
-	   setcookie("fname", $userdata['fname'], $expire, '/');
-	   setcookie("lname", $userdata['lname'], $expire, '/');
-	   setcookie("email", $userdata['email'], $expire, '/');
-	   setcookie("grade", $userdata['grade'], $expire, '/');
-	   header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath');
+	   setcookie("admin_id", $userdata['id'], $expire, '/mvmsmath/admin/');
+	   setcookie("fname", $userdata['fname'], $expire, '/mvmsmath/admin/');
+	   setcookie("lname", $userdata['lname'], $expire, '/mvmsmath/admin/');
+	   setcookie("email", $userdata['email'], $expire, '/mvmsmath/admin/');
+	   header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/panel.php');
 	} else {
-	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath?login=failed');
+	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin?login=failed');
 	}
 	?>
