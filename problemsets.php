@@ -13,7 +13,6 @@
     while ($row = $res->fetch_assoc()) {
         extract($row);
     }
-    error_log($query, 3, "/var/www/my-errors.log");
     $tables = explode(",",$problem_sets);
 	if (isset($_COOKIE["fname"]))
         foreach ($tables as &$ps) {

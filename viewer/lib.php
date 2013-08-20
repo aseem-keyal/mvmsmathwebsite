@@ -29,29 +29,25 @@
 }
 
 function setUserQuestionStatus($id, $user, $question, $usersStatusStr, $isCorrect) {
-	$query = "select stats from users where id=$user;";
-	$mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
-	$result = $mysqli->query($query) or die(mysql_error());
-	$resultData = $result->fetch_assoc();
-	$result->free();
-	$mysqli->close();
-     error_log(implode(",",$resultData),3,"/var/www/my-error.log");
 	 parse_str($usersStatusStr, $usersStatusAssoc);
 	 if ($isCorrect) {
 	    if (array_key_exists($user, $usersStatusAssoc)) {
 	       $usersStatusAssoc[$user] = (string)((int) $usersStatusAssoc[$user] + 1);
            updateQuestionDifficulty($id, $question, $usersStatusAssoc);
-           updateUserStats($user,$resultData['stats'],2);
+           updateUserStats($user,2);
+           updateGroupStats($user,2);
 	    } else {
 	       $usersStatusAssoc[$user] = "1";
            updateQuestionDifficulty($id, $question, $usersStatusAssoc);
-           updateUserStats($user,$resultData['stats'],1);
+           updateUserStats($user,1);
+           updateGroupStats($user,1);
 	    }
 	 } else {
 	    if (array_key_exists($user, $usersStatusAssoc)) {
 	       $usersStatusAssoc[$user] = (string)((int) $usersStatusAssoc[$user] + 2);
            updateQuestionDifficulty($id, $question, $usersStatusAssoc);
-           updateUserStats($user,$resultData['stats'],0);
+           updateUserStats($user,0);
+           updateGroupStats($user,0);
 	    } else {
 	       $usersStatusAssoc[$user] = "2";
 	    }
@@ -64,9 +60,14 @@ function setUserQuestionStatus($id, $user, $question, $usersStatusStr, $isCorrec
 	 $mysqli->close();
 }
 
-function updateUserStats($user, $usersStatsStr, $isCorrect) {
-	 parse_str($usersStatsStr, $usersStatsAssoc);
-     error_log(implode(",",$usersStatsAssoc),3,"/var/www/my-error.log");
+function updateUserStats($user, $isCorrect) {
+	$query = "select stats from users where id=$user;";
+	$mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
+	$result = $mysqli->query($query) or die(mysql_error());
+	$resultData = $result->fetch_assoc();
+	$result->free();
+	$mysqli->close();
+	 parse_str($resultData['stats'], $usersStatsAssoc);
 	 if ($isCorrect === 1) {
 	    if (array_key_exists('first' , $usersStatsAssoc)) {
             $usersStatsAssoc['first'] = (string)((int) $usersStatsAssoc['first'] + 1);
@@ -89,6 +90,41 @@ function updateUserStats($user, $usersStatsStr, $isCorrect) {
 	 $usersStatsStr = http_build_query($usersStatsAssoc);
 
 	 $query = "update users set stats='$usersStatsStr' where id='$user'";
+	 $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
+	 $mysqli->query($query);
+	 $mysqli->close();
+}
+
+function updateGroupStats($user, $isCorrect) {
+	$query = "select stats from groups where members like '%$user%';";
+	$mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
+	$result = $mysqli->query($query) or die(mysql_error());
+	$resultData = $result->fetch_assoc();
+	$result->free();
+	$mysqli->close();
+	 parse_str($resultData['stats'], $groupStatsAssoc);
+	 if ($isCorrect === 1) {
+	    if (array_key_exists('first' , $groupStatsAssoc)) {
+            $groupStatsAssoc['first'] = (string)((int) $groupStatsAssoc['first'] + 1);
+	    } else {
+            $groupStatsAssoc['first'] = "1";
+	    }
+	 } elseif ($isCorrect === 2) {
+	    if (array_key_exists('second' , $groupStatsAssoc)) {
+            $groupStatsAssoc['second'] = (string)((int) $groupStatsAssoc['second'] + 1);
+	    } else {
+            $groupStatsAssoc['second'] = "1";
+	    }
+     } elseif ($isCorrect === 0) {
+	    if (array_key_exists('incorrect' , $groupStatsAssoc)) {
+            $groupStatsAssoc['incorrect'] = (string)((int) $groupStatsAssoc['incorrect'] + 1);
+	    } else {
+            $groupStatsAssoc['incorrect'] = "1";
+	    }
+     }
+	 $groupStatsStr = http_build_query($groupStatsAssoc);
+
+	 $query = "update groups set stats='$groupStatsStr' where members like '%$user%'";
 	 $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
 	 $mysqli->query($query);
 	 $mysqli->close();
