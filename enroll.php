@@ -5,27 +5,23 @@
 
     <?php include("navbar/navbar.php"); ?>
     <div class="container">
+    <h1>Competition Enrollment</h1>
     <?php
 	if (isset($_COOKIE["fname"])) {
         $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
         $user_id = $_COOKIE['user_id'];
-        $query = "select problem_sets from groups where members like '%$user_id%';";
+        $query = "select * from competitions;";
         $res = $mysqli->query($query) or die(mysql_error());
         while ($row = $res->fetch_assoc()) {
-            extract($row);
-        }
-        $tables = explode(",",$problem_sets);
-        foreach ($tables as &$ps) {
-            $number = substr($ps,2);
-            echo '<div class="span4">
+            echo '<div class="span3">
                 <div class="well">
-                <h4>Problem Set ' . $number . '</h4>
+                <h4>' . $row['name'] . '</h4>
                 <hr>
                 <a class="btn">View Details</a>
-                <a class="btn btn-primary pull-right" href="viewer/index.php?id=ps' . $number . '">Open Problems</a>
+                <a class="btn btn-primary pull-right" href="#">Enroll</a>
         </div>
         </div>';
-      }
+     }
     }
 	else
         echo '<p>Please log in to see your problem sets.</p>';

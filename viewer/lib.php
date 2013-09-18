@@ -28,10 +28,56 @@
     return $output;
 }
 
+function setUnansweredQuestions($id, $user,$total) {
+    $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_questions");
+    for ($question = 1; $question <= $total; $question++) {
+        $query = "select users_status from $id where id=$question;";
+        $result = $mysqli->query($query) or die(mysql_error());
+        $resultData = $result->fetch_assoc();
+        $result->free();
+        parse_str($resultData['users_status'], $usersStatusAssoc);
+        if (!array_key_exists($user, $usersStatusAssoc)) {
+            $usersStatusAssoc[$user] = "0";
+        }
+        $usersStatusStr = http_build_query($usersStatusAssoc);
+
+        $query = "update " . $id . " set users_status='$usersStatusStr' where id='$question'";
+        $mysqli->query($query);
+    }
+    $mysqli->close();
+}
+
+function checkExpiryDate($id, $user, $total) {
+    $query = "select expire from details where id=$id;";
+    $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_questions");
+    $result = $mysqli->query($query) or die(mysql_error());
+    $resultData = $result->fetch_assoc();
+    $result->free();
+    $expiryDateTime = date_create($resultData['expire']);
+    $currentDateTime = date_create(date(Y-m-d));
+    $diff = date_diff($expiryDateTime, $currentDateTime);
+    if ($diff > 0) {
+        for ($question = 1; $question <= $total; $question++) {
+            $query = "select users_status from $id where id=$question;";
+            $result = $mysqli->query($query) or die(mysql_error());
+            $resultData = $result->fetch_assoc();
+            $result->free();
+            parse_str($resultData['users_status'], $usersStatusAssoc);
+            if ((int)$usersStatusAssoc[$user] === 2 || (int)$usersStatusAssoc[$user] === 0) {
+                $usersStatusAssoc[$user] = "4";
+            }
+            $usersStatusStr = http_build_query($usersStatusAssoc);
+
+            $query = "update " . $id . " set users_status='$usersStatusStr' where id='$question'";
+        }
+    }
+    $mysqli->close();
+}
+
 function setUserQuestionStatus($id, $user, $question, $usersStatusStr, $isCorrect) {
 	 parse_str($usersStatusStr, $usersStatusAssoc);
 	 if ($isCorrect) {
-	    if (array_key_exists($user, $usersStatusAssoc)) {
+	    if ($usersStatusAssoc[$user] === "2") {
 	       $usersStatusAssoc[$user] = (string)((int) $usersStatusAssoc[$user] + 1);
            updateQuestionDifficulty($id, $question, $usersStatusAssoc);
            updateUserStats($user,2);
@@ -43,7 +89,7 @@ function setUserQuestionStatus($id, $user, $question, $usersStatusStr, $isCorrec
            updateGroupStats($user,1);
 	    }
 	 } else {
-	    if (array_key_exists($user, $usersStatusAssoc)) {
+	    if ($usersStatusAssoc[$user] === "2") {
 	       $usersStatusAssoc[$user] = (string)((int) $usersStatusAssoc[$user] + 2);
            updateQuestionDifficulty($id, $question, $usersStatusAssoc);
            updateUserStats($user,0);

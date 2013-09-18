@@ -2,10 +2,10 @@
    include("checkauth.php");
    ?>
 <html>
-  <head>
-    <title>Users Pending Approval - Mesa Verde Math Club</title>
-  </head>
+    <?php include("../header.php"); ?>
   <body>
+    <?php include("../navbar/navbar.php"); ?>
+    <div class="container">
     <table>
       <tr>
 	<th>ID</th>
@@ -28,5 +28,7 @@
          $mysqli->close();
       ?>
     </table>
+    <?php include("../footer.php"); ?>
+    </div>
   </body>
 </html>

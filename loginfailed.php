@@ -4,8 +4,8 @@
 <body>
 	<?php include("/var/www/mvmsmath/navbar/navbar.php"); ?>
 	<div class="container">
-        <h1>Registration Complete!</h1>
-        <p>Log in to your account or return to the home page <a href="../index.php">here</a>.</p>
+        <h1>Login Failed</h1>
+        <p>Try logging in again or return to the home page <a href="../index.php">here</a>.</p>
         <?php include("/var/www/mvmsmath/login.php"); ?>
     <?php include("/var/www/mvmsmath/footer.php"); ?>
     </div><!--/row-->

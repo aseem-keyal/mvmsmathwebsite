@@ -23,29 +23,17 @@
               <li class="dropdown">
                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-user icon-white"></i> Sign In <strong class="caret"></strong></a>
               <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-	      <form action="/mvmsmath/authentication/login.php" method="POST" class="form">
-      	      	    <fieldset>
-			<label for="email">Email</label>
-			<div class="div_text">
-			<div class="input-prepend"><span class="add-on"><i class="icon-envelope"></i></span><input name="email" type="text" id="log inputIcon" value="" class="username span2" placeholder="Email"></div>
-			</div>
-			<label for="password">Password</label>
-			<div class="div_text">
-			<div class="input-prepend"><span class="add-on"><i class="icon-lock"></i></span><input name="pwd" type="password" id="pwd inputIcon" class="password span2" placeholder="Password"></div>
-                       </div>
-
-		       <input type="hidden" name="redirect_to" value="<?php echo $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ?>"><input name="a" type="hidden" value="login">
-		       <div class="button_div">
-			<input name="rememberme" type="checkbox" id="rememberme" value="forever">&nbsp;Remember me&nbsp;&nbsp;<input type="submit" name="Submit" value="Login" class="btn btn-primary">
-			</div>
-	      </fieldset>
-	   </form>
+            <?php include("/var/www/mvmsmath/login.php"); ?>
            </div>
             </li>
           </ul>
-            <form class="navbar-search pull-right">
-	      <input type="text" class="search-query" placeholder="Search">
-	    </form>
+	  </div><!--/.nav-collapse -->
+        </div>
+     </div>
+</div>
+           </div>
+            </li>
+          </ul>
 	  </div><!--/.nav-collapse -->
         </div>
      </div>

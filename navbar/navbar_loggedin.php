@@ -17,20 +17,16 @@
               <li <?php if ($page == '/mvmsmath/contact.php'){ echo 'class="active"'; } ?>><a href="/mvmsmath/contact.php"><i class="icon-comment icon-white"></i> Contact</a></li>
            </ul>
 	   <ul class="nav pull-right">
-	      <li class="divider-vertical"></li>
               <li class="dropdown">
                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-user icon-white"></i> <?php echo $_COOKIE["fname"] . " " . $_COOKIE["lname"]; ?> <strong class="caret"></strong></a>                        <ul class="dropdown-menu">
               <li><a href="/mvmsmath/profile.php">Profile</a></li>
               <li><a href="/mvmsmath/problemsets.php">Problem Sets</a></li>
-              <li><a href="/mvmsmath/qotd.php">Question of the Day</a></li>
+              <li><a href="/mvmsmath/enroll.php">Enroll in Competitions</a></li>
               <li class="divider"></li>
               <li><a href="/mvmsmath/authentication/logout.php">Sign Out</a></li>
             </ul>
             </li>
           </ul>
-            <form class="navbar-search pull-right">
-	      <input type="text" class="search-query" placeholder="Search">
-	    </form>
 	  </div><!--/.nav-collapse -->
         </div>
      </div>

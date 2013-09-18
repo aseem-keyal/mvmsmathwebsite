@@ -12,7 +12,6 @@
           <ul class="nav nav-list">
             <li class="nav-header">Questions</li>
             <li><a href="problemsets.php">Problem Sets</a></li>
-            <li><a href="qotd.php">Question of the Day</a></li>
             <li><a href="#">Other Resources</a></li>
             <li class="nav-header">Sidebar</li>
             <li><a href="#">Link</a></li>
@@ -26,7 +25,7 @@
 	<ul class="nav nav-tabs">
 	  <li><a href="#main" data-toggle="tab">Main Information</a></li>
 	  <li><a href="#stats" data-toggle="tab">Statistics</a></li>
-	  <li><a href="#awards" data-toggle="tab">Awards</a></li>
+	  <li><a href="#announcements" data-toggle="tab">Announcements</a></li>
 	</ul>
 	<div class="tab-content">
 	  <div class="tab-pane active" id="main">
@@ -35,8 +34,8 @@
 	  <div class="tab-pane" id="stats">
 	    <?php include("profile/profile_stats.php"); ?>
 	  </div>
- 	  <div class="tab-pane" id="awards">
-	  <?php include("profile/profile_awards.php"); ?>
+ 	  <div class="tab-pane" id="announcements">
+	  <?php include("profile/profile_announcements.php"); ?>
 	  </div>
 	</div> <!--/tab content-->
       </div> <!--/span-->

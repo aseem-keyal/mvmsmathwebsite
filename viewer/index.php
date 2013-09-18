@@ -28,7 +28,8 @@
 		      $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_questions");
 		      $result = $mysqli->query($query);
 		      $rowcount = $result->num_rows;
-
+              setUnansweredQuestions($problemset_id,$user,$rowcount);
+              //checkExpiryDate($problemset_id,$user,$rowcount);
 		      for ($i = 1; $i <= $rowcount; $i++) {
                 $row = $result->fetch_assoc();
 		         parse_str($row['users_status'], $users_status);
@@ -37,6 +38,8 @@
 		                 echo "<tr><td>" . $i . "</td><td>Incorrect after " . ((int)$users_status[$user] / 2) . " attempt(s)</td><td><button class=\"btn btn-small btn-primary disabled\" type=\"button\" id=\"question\" name=\"question\" value=\"" . $i . "\">Submit</button></td></tr>\n";
 		             } else if (((int)$users_status[$user] % 2) == 1) {
 		                 echo "<tr><td>" . $i . "</td><td>Correct after " . ceil((float)$users_status[$user] / 2) . " attempt(s)</td><td><button class=\"btn btn-small btn-primary disabled\" type=\"button\" id=\"question\" name=\"question\" value=\"" . $i . "\">Submit</button></td></tr>\n";
+          		     } else if ((int)$users_status[$user] == 2) {
+		                 echo "<tr><td>" . $i . "</td><td><input type=\"text\" id=\"answer" . $i . "\" name=\"answer" . $i . "\" placeholder=\"Enter Answer\"></td><td><button class=\"btn btn-small btn-primary\" type=\"submit\" id=\"question\" name=\"question\" value=\"" . $i . "\">Try Again</button></td></tr>\n";
           		     } else {
 		                 echo "<tr><td>" . $i . "</td><td><input type=\"text\" id=\"answer" . $i . "\" name=\"answer" . $i . "\" placeholder=\"Enter Answer\"></td><td><button class=\"btn btn-small btn-primary\" type=\"submit\" id=\"question\" name=\"question\" value=\"" . $i . "\">Submit</button></td></tr>\n";
           		     }

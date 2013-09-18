@@ -13,7 +13,7 @@
 	   $login_success = False;
 	} else {
 	   $userdata = $result->fetch_assoc();
-	   if (validate_password($password, $userdata['password']) && $userdata['approved'] == 1) { 
+	   if (validate_password($password, $userdata['password']) && $userdata['approved'] == 1) {
 	      $login_success = True;
 	   } else {
 	      $login_success = False;
@@ -36,6 +36,6 @@
 	   setcookie("grade", $userdata['grade'], $expire, '/');
 	   header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath');
 	} else {
-	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath?login=failed');
+	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/loginfailed.php');
 	}
 	?>
