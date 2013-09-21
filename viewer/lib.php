@@ -29,14 +29,16 @@
 }
 
 function setUnansweredQuestions($id, $user,$total) {
+    $bool = false;
     $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_questions");
     for ($question = 1; $question <= $total; $question++) {
-        $query = "select users_status from $id where id=$question;";
+        $query = "select users_status from $id where id='$question';";
         $result = $mysqli->query($query) or die(mysql_error());
         $resultData = $result->fetch_assoc();
         $result->free();
         parse_str($resultData['users_status'], $usersStatusAssoc);
         if (!array_key_exists($user, $usersStatusAssoc)) {
+            $bool = true;
             $usersStatusAssoc[$user] = "0";
         }
         $usersStatusStr = http_build_query($usersStatusAssoc);
@@ -45,30 +47,39 @@ function setUnansweredQuestions($id, $user,$total) {
         $mysqli->query($query);
     }
     $mysqli->close();
+    if ($bool) {
+        $redirectbase = 'Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/viewer?id=' . $id;
+        header($redirectbase);
+    }
 }
 
 function checkExpiryDate($id, $user, $total) {
-    $query = "select expire from details where id=$id;";
+    $times = 0;
+    $query = "select expire from details where id='$id';";
     $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_questions");
     $result = $mysqli->query($query) or die(mysql_error());
     $resultData = $result->fetch_assoc();
     $result->free();
-    $expiryDateTime = date_create($resultData['expire']);
-    $currentDateTime = date_create(date(Y-m-d));
-    $diff = date_diff($expiryDateTime, $currentDateTime);
-    if ($diff > 0) {
+    $expiryDateTime = new DateTime($resultData['expire']);
+    $currentDateTime = new DateTime("now");
+    if ($currentDateTime > $expiryDateTime) {
         for ($question = 1; $question <= $total; $question++) {
-            $query = "select users_status from $id where id=$question;";
+            $query = "select users_status from $id where id='$question';";
             $result = $mysqli->query($query) or die(mysql_error());
             $resultData = $result->fetch_assoc();
             $result->free();
             parse_str($resultData['users_status'], $usersStatusAssoc);
             if ((int)$usersStatusAssoc[$user] === 2 || (int)$usersStatusAssoc[$user] === 0) {
+                $times++;
                 $usersStatusAssoc[$user] = "4";
+                $usersStatusStr = http_build_query($usersStatusAssoc);
+                $query = "update " . $id . " set users_status='$usersStatusStr' where id='$question'";
+                $mysqli->query($query);
             }
-            $usersStatusStr = http_build_query($usersStatusAssoc);
-
-            $query = "update " . $id . " set users_status='$usersStatusStr' where id='$question'";
+        }
+        if ($times > 0) {
+            $redirectbase = 'Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/viewer?id=' . $id;
+            header($redirectbase);
         }
     }
     $mysqli->close();
