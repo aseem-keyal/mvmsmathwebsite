@@ -47,14 +47,14 @@ echo ' <div class="span4">
 				<td>Correct on Second Try</td>
 				<td>' . $statsAssoc['second'] . '</td>
 				<td>' . percentage($statsAssoc['second'],$statsAssoc) . '%</td>
-				<td>' . $statsAssoc2['first'] . '</td>
+				<td>' . $statsAssoc2['second'] . '</td>
 				<td>' . percentage($statsAssoc2['second'],$statsAssoc2) . '%</td>
 			</tr>
 			<tr>
 				<td>Incorrect</td>
                 <td>' . $statsAssoc['incorrect'] . '</td>
 				<td>' . percentage($statsAssoc['incorrect'],$statsAssoc) . '%</td>
-				<td>' . $statsAssoc2['first'] . '</td>
+				<td>' . $statsAssoc2['incorrect'] . '</td>
 				<td>' . percentage($statsAssoc2['incorrect'],$statsAssoc2) . '%</td>
 			</tr>
 		</tbody>
