@@ -19,11 +19,19 @@
 	   <ul class="nav pull-right">
               <li class="dropdown">
                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-user icon-white"></i> <?php echo $_COOKIE["fname"] . " " . $_COOKIE["lname"]; ?> <strong class="caret"></strong></a>                        <ul class="dropdown-menu">
-              <li><a href="/mvmsmath/profile.php">Profile</a></li>
+        <?php
+        if(isset($_COOKIE['admin_id'])){
+            echo '<li><a href="/mvmsmath/admin/authentication/logout.php">Sign Out</a></li>';
+
+        }
+        else {
+               echo '<li><a href="/mvmsmath/profile.php">Profile</a></li>
               <li><a href="/mvmsmath/problemsets.php">Problem Sets</a></li>
-              <li><a href="/mvmsmath/enroll.php">Enroll in Competitions</a></li>
+              <li><a href="/mvmsmath/enroll/enroll.php">Enroll in Competitions</a></li>
               <li class="divider"></li>
-              <li><a href="/mvmsmath/authentication/logout.php">Sign Out</a></li>
+              <li><a href="/mvmsmath/authentication/logout.php">Sign Out</a></li>';
+        }
+?>
             </ul>
             </li>
           </ul>

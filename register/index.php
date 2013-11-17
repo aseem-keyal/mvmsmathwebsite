@@ -52,7 +52,14 @@
 					   <button type="submit" class="btn btn-success" rel="tooltip" title="first tooltip">Create My Account</button>
 					  </div>
 				</div>
-
+                <?php
+                if ($_GET['email'] === "false") {
+                    echo '
+                        <div class="alert alert-error">
+                           That email is already registered, please try again with another email.
+                        </div>';
+                }
+                ?>
 				  </fieldset>
 				</form>
 			</div>

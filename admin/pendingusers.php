@@ -6,7 +6,7 @@
   <body>
     <?php include("../navbar/navbar.php"); ?>
     <div class="container">
-    <table>
+    <table class="table">
       <tr>
 	<th>ID</th>
 	<th>Last name</th>

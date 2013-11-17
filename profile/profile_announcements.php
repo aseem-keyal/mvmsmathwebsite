@@ -1,1 +1,2 @@
-<p>Nothing to put here yet.</p>
+<div class="cushycms">
+</div>

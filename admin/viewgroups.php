@@ -9,19 +9,18 @@
     <table class="table">
       <tr>
 	<th>ID</th>
-	<th>Last name</th>
-	<th>First name</th>
-	<th>Email address</th>
-	<th>Actions</th>
+	<th>Members</th>
+	<th>Problem Sets</th>
+	<th>Stats</th>
       </tr>
       <?php
-	 $query = "select * from users where approved=1 order by id asc;";
+	 $query = "select * from groups;";
 
 	 $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
 	 $result = $mysqli->query($query);
 
          while ($row = $result->fetch_assoc()) {
-              echo "<tr><td>" . $row['id'] . "</td><td>" . $row['lname'] . "</td><td>" . $row['fname'] . "</td><td>" . $row['email'] . "</td><td><a href=\"/mvmsmath/admin/deleteuser.php?id=" . $row['id'] . "\">Delete user</a></td></tr>";
+              echo "<tr><td>" . $row['id'] . "</td><td>" . $row['members'] . "</td><td>" . $row['problem_sets'] . "</td><td>" . $row['stats'] . "</td></tr>";
          }
 
          $result->free();

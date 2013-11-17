@@ -75,12 +75,19 @@ function checkExpiryDate($id, $user, $total) {
                 $usersStatusStr = http_build_query($usersStatusAssoc);
                 $query = "update " . $id . " set users_status='$usersStatusStr' where id='$question'";
                 $mysqli->query($query);
+                updateQuestionDifficulty($id, $question, $usersStatusAssoc);
+                updateUserStats($user,0);
+                updateGroupStats($user,0);
             }
         }
         if ($times > 0) {
             $redirectbase = 'Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/viewer?id=' . $id;
             header($redirectbase);
         }
+        return true;
+    }
+    else {
+        return false;
     }
     $mysqli->close();
 }

@@ -29,17 +29,17 @@
 		      $result = $mysqli->query($query);
 		      $rowcount = $result->num_rows;
               setUnansweredQuestions($problemset_id,$user,$rowcount);
-              checkExpiryDate($problemset_id,$user,$rowcount);
+              $isExpired = checkExpiryDate($problemset_id,$user,$rowcount);
 		      for ($i = 1; $i <= $rowcount; $i++) {
                 $row = $result->fetch_assoc();
 		         parse_str($row['users_status'], $users_status);
 		         if (array_key_exists($user, $users_status)) {
 		             if ((int)$users_status[$user] >= ($MAX_ANSWER_ATTEMPTS * 2)) {
-		                 echo "<tr><td>" . $i . "</td><td>Incorrect after " . ((int)$users_status[$user] / 2) . " attempt(s) or time</td><td><button class=\"btn btn-small btn-primary disabled\" type=\"button\" id=\"question\" name=\"question\" value=\"" . $i . "\">Submit</button></td></tr>\n";
+		                 echo "<tr><td>" . $i . "</td><td>Incorrect after " . ((int)$users_status[$user] / 2) . " attempt(s) or time</td><td><button class=\"btn btn-small btn-primary disabled\" type=\"button\" id=\"question\" name=\"question\" value=\"" . $i . "\">Submitted</button></td></tr>\n";
 		             } else if (((int)$users_status[$user] % 2) == 1) {
-		                 echo "<tr><td>" . $i . "</td><td>Correct after " . ceil((float)$users_status[$user] / 2) . " attempt(s)</td><td><button class=\"btn btn-small btn-primary disabled\" type=\"button\" id=\"question\" name=\"question\" value=\"" . $i . "\">Submit</button></td></tr>\n";
+		                 echo "<tr><td>" . $i . "</td><td>Correct after " . ceil((float)$users_status[$user] / 2) . " attempt(s)</td><td><button class=\"btn btn-small btn-primary disabled\" type=\"button\" id=\"question\" name=\"question\" value=\"" . $i . "\">Submitted</button></td></tr>\n";
           		     } else if ((int)$users_status[$user] == 2) {
-		                 echo "<tr><td>" . $i . "</td><td><input type=\"text\" id=\"answer" . $i . "\" name=\"answer" . $i . "\" placeholder=\"Enter Answer\"></td><td><button class=\"btn btn-small btn-primary\" type=\"submit\" id=\"question\" name=\"question\" value=\"" . $i . "\">Try Again</button></td></tr>\n";
+		                 echo "<tr><td>" . $i . "</td><td><input type=\"text\" id=\"answer" . $i . "\" name=\"answer" . $i . "\" placeholder=\"Enter Answer\"></td><td><button class=\"btn btn-small btn-primary btn-danger\" type=\"submit\" id=\"question\" name=\"question\" value=\"" . $i . "\">Try Again</button></td></tr>\n";
           		     } else {
 		                 echo "<tr><td>" . $i . "</td><td><input type=\"text\" id=\"answer" . $i . "\" name=\"answer" . $i . "\" placeholder=\"Enter Answer\"></td><td><button class=\"btn btn-small btn-primary\" type=\"submit\" id=\"question\" name=\"question\" value=\"" . $i . "\">Submit</button></td></tr>\n";
           		     }
@@ -54,6 +54,7 @@
             </div>
             <div class="span8" style="height: 100%">
                 <div class="well" style="height: 100%">
+                <?php if($isExpired == true){ $problemset_id = $problemset_id . 'ans';} ?>
                 <object data="../pdfs/<?php echo $problemset_id; ?>.pdf" type="application/pdf" width="100%" height="100%">
                        <p>Looks like you can't view this file.</p>
                     </object>
