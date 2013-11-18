@@ -13,7 +13,7 @@
 	   $login_success = False;
 	} else {
 	   $userdata = $result->fetch_assoc();
-	   if (validate_password($password, $userdata['password'])) { 
+	   if (validate_password($password, $userdata['password'])) {
 	      $login_success = True;
 	   } else {
 	      $login_success = False;
@@ -29,10 +29,12 @@
 	   else
 	      $expire = time() + 60*60*24;
 
-	   setcookie("admin_id", $userdata['id'], $expire, '/mvmsmath/admin/');
-	   setcookie("fname", $userdata['fname'], $expire, '/mvmsmath/admin/');
-	   setcookie("lname", $userdata['lname'], $expire, '/mvmsmath/admin/');
-	   setcookie("email", $userdata['email'], $expire, '/mvmsmath/admin/');
+	   setcookie("admin_id", $userdata['id'], $expire, '/');
+	   setcookie("user_id", "", time() - 3600, '/');
+	   setcookie("grade","", time() - 3600, '/');
+	   setcookie("fname", $userdata['fname'], $expire, '/');
+	   setcookie("lname", $userdata['lname'], $expire, '/');
+	   setcookie("email", $userdata['email'], $expire, '/');
 	   header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/panel.php');
 	} else {
 	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin?login=failed');

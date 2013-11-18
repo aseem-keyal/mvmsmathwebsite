@@ -29,6 +29,7 @@
 	   else
 	      $expire = time() + 60*60*24;
 
+	   setcookie("admin_id", "", time() - 3600, '/');
 	   setcookie("user_id", $userdata['id'], $expire, '/');
 	   setcookie("fname", $userdata['fname'], $expire, '/');
 	   setcookie("lname", $userdata['lname'], $expire, '/');
