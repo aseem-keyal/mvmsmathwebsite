@@ -6,21 +6,7 @@
     <?php include("navbar/navbar.php"); ?>
     <div class="container">
     <div class="container-fluid">
-
-      <div class="span3">
-        <div class="well sidebar-nav">
-          <ul class="nav nav-list">
-            <li class="nav-header">Questions</li>
-            <li><a href="problemsets.php">Problem Sets</a></li>
-            <li><a href="#">Other Resources</a></li>
-            <li class="nav-header">Sidebar</li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-          </ul>
-        </div><!--/well -->
-      </div><!--/span-->
-
+    <?php include("resources.php"); ?>
       <div class="span8">
 	<ul class="nav nav-tabs">
 	  <li><a href="#main" data-toggle="tab">Main Information</a></li>

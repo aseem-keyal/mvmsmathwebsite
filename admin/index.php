@@ -6,13 +6,9 @@ if (isset($_COOKIE['admin_id'])) { header('Location: http://' . $_SERVER['SERVER
   <body>
   <?php include("../navbar/navbar.php"); ?>
   <div class="container">
-    <form action="/mvmsmath/admin/authentication/login.php" method="post">
-      Email: <input name="email" type="text" /><br />
-      Password: <input name="pwd" type="password" /><br />
-      <input type="submit" />
-    </form>
+    <h1>Admin Login</h1>
+  <?php include("/var/www/mvmsmath/admin/login.php"); ?>
   <?php include("../footer.php"); ?>
-    </div> <!-- /container -->
     </div>
     <!-- Le javascript
     ================================================== -->

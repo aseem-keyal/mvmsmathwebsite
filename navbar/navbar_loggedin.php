@@ -13,8 +13,16 @@
 	   	$page = $_SERVER['REQUEST_URI'];
 	   	?>
               <li <?php if ($page == '/mvmsmath/index.php' or $page == NULL){ echo 'class="active"'; } ?>><a href="/mvmsmath/index.php"><i class="icon-home icon-white"></i> Home</a></li>
-              <li <?php if ($page == '/mvmsmath/about.php'){ echo 'class="active"'; } ?>><a href="/mvmsmath/about.php"><i class="icon-briefcase icon-white"></i> About</a></li>
-              <li <?php if ($page == '/mvmsmath/contact.php'){ echo 'class="active"'; } ?>><a href="/mvmsmath/contact.php"><i class="icon-comment icon-white"></i> Contact</a></li>
+                <?php
+                if(isset($_COOKIE['admin_id'])){
+                    echo '<li><a href="/mvmsmath/admin/panel.php"><i class="icon-th-large icon-white"></i> Panel</a><li>';
+
+                }
+                else {
+                    echo '<li><a href="/mvmsmath/profile.php"><i class="icon-th-large icon-white"></i> Profile</a></li>';
+                    echo '<li><a href="/mvmsmath/problemsets.php"><i class="icon-list icon-white"></i> Problem Sets</a></li>';
+                }
+        ?>
            </ul>
 	   <ul class="nav pull-right">
               <li class="dropdown">
@@ -25,11 +33,7 @@
 
         }
         else {
-               echo '<li><a href="/mvmsmath/profile.php">Profile</a></li>
-              <li><a href="/mvmsmath/problemsets.php">Problem Sets</a></li>
-              <li><a href="/mvmsmath/enroll/enroll.php">Enroll in Competitions</a></li>
-              <li class="divider"></li>
-              <li><a href="/mvmsmath/authentication/logout.php">Sign Out</a></li>';
+            echo '<li><a href="/mvmsmath/authentication/logout.php">Sign Out</a></li>';
         }
 ?>
             </ul>

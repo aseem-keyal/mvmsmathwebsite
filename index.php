@@ -6,26 +6,14 @@
     <div class="container">
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+    <?php include("resources.php"); ?>
 	<div class="span4">
 	  <div class="hero-unit">
-            <h1>Hello.</h1>
-            <p>Blah, blah, blah, math is cool.</p>
-        <p><a class="btn btn-primary btn-large" href="about.php">Learn more &raquo;</a></p>
+            <h1>Welcome</h1>
+            <br />
+            <p>Answer questions and view your stats here.</p>
+            <br />
+        <p><a class="btn btn-primary btn-large" href="register/">Register now &raquo;</a></p>
 	  </div>
 	</div>
 	<div class="span4">
