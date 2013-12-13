@@ -6,6 +6,7 @@ if ($_POST["operation"] == "add") {
     $query = "update groups set members = ifnull(concat(members, ',$users'), '$users') where id = $group;";
     $result = $mysqli->query($query) or die(mysql_error());
     $mysqli->close();
+    header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/panel.php?groups=true');
 }
 elseif ($_POST["operation"] == "remove") {
     $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
@@ -26,6 +27,7 @@ elseif ($_POST["operation"] == "remove") {
         // remove one array from another
         $result = $mysqli->query($query) or die(mysql_error());
         $mysqli->close();
+        header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/panel.php?groups=true');
     }
 }
 ?>

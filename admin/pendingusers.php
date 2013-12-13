@@ -2,9 +2,9 @@
    include("checkauth.php");
    ?>
 <html>
-    <?php include("../header.php"); ?>
+    <?php include("/var/www/mvmsmath/header.php"); ?>
   <body>
-    <?php include("../navbar/navbar.php"); ?>
+    <?php include("/var/www/mvmsmath/navbar/navbar.php"); ?>
     <div class="container">
     <table class="table">
       <tr>
@@ -28,7 +28,13 @@
          $mysqli->close();
       ?>
     </table>
-    <?php include("../footer.php"); ?>
+    <?php include("/var/www/mvmsmath/footer.php"); ?>
     </div>
+    </div>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/mvmsmath/assets/bootstrap/js/jquery.js"></script>
+    <script src="/mvmsmath/assets/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

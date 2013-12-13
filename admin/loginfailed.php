@@ -4,15 +4,10 @@
 <body>
 	<?php include("/var/www/mvmsmath/navbar/navbar.php"); ?>
 	<div class="container">
-<?php if ($_GET["pending"] == "True"){
-    echo '<h1>Account Pending</h1>
-        <p>Your account is currently pending approval, if you have any questions please contact <a href="mailto:aseem.keyal@gmail.com">aseem.keyal@gmail.com</a>.</p>';
-} else {
-    echo '<h1>Login Failed</h1>
-        <p>Incorrect email or password, please contact <a href="mailto:aseem.keyal@gmail.com">aseem.keyal@gmail.com</a> if trying to log in again does not work.</p>';
-}
-?>
-        <?php include("/var/www/mvmsmath/login.php"); ?>
+        <h1>Login Failed</h1>
+        <p>Try logging in again or return to the home page <a href="../mvmsmath/index.php">here</a>.</p>
+        <?php include("/var/www/mvmsmath/admin/login.php"); ?>
+        <p>If you have forgot your password, please contact <a href="mailto:aseem.keyal@gmail.com">aseem.keyal@gmail.com</a>.</p>
     <?php include("/var/www/mvmsmath/footer.php"); ?>
     </div><!--/row-->
 

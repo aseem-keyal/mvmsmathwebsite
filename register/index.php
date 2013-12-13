@@ -56,7 +56,8 @@
                 if ($_GET['email'] === "false") {
                     echo '
                         <div class="alert alert-error">
-                           That email is already registered, please try again with another email.
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error!</strong> This email already has an account.
                         </div>';
                 }
                 ?>
@@ -125,6 +126,3 @@
 	  </script>
   </body>
 </html>
-
-
-

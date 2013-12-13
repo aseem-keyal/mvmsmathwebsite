@@ -8,6 +8,14 @@
     <div class="container">
     <a href="/mvmsmath/admin/manageusers.php">Manage Users/Groups</a><br />
     <a href="/mvmsmath/admin/addpset.php">Add Problem Set</a>
+    <?php if ($_GET['groups'] === "true") {
+        echo '
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Success!</strong> Groups modified successfully.
+            </div>';
+    }
+    ?>
     <?php include("../footer.php"); ?>
     </div> <!-- /container -->
     </div>

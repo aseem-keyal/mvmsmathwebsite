@@ -11,7 +11,8 @@
 
 		       <input type="hidden" name="redirect_to" value="<?php echo $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ?>"><input name="a" type="hidden" value="login">
 		       <div class="button_div">
-			<input name="rememberme" type="checkbox" id="rememberme" value="forever">&nbsp;Remember me&nbsp;&nbsp;<input type="submit" name="Submit" value="Login" class="btn btn-primary">
+            <label class="checkbox">
+			<input name="rememberme" type="checkbox" id="rememberme" value="forever">&nbsp;Remember me&nbsp;&nbsp;</label><input type="submit" name="Submit" value="Login" class="btn btn-primary">
 			</div>
 	      </fieldset>
 	   </form>

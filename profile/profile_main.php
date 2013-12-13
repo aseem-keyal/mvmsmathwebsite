@@ -15,8 +15,17 @@ $mysqli->close();
 <p>Grade: <?php echo $_COOKIE['grade'] ?></p>
 <p>Group: <?php echo $row['id'] ?></p>
 <p>Change Password:</p>
-<input type="text" name="password" id="password" placeholder="New password" />
+<form id="changePassword" action="/mvmsmath/profile/change_password.php" method="post">
+<input type="password" name="pwd" id="pwd" placeholder="New password" />
 <br />
-<input type="text" name="confirm" id="confirm" placeholder="Confirm new password" />
+<input type="password" name="cpwd" id="cpwd" placeholder="Confirm new password" />
 <br />
 <button type="submit" class="btn btn-danger">Change Password</button>
+</form>
+<?php if ($_GET["changed"] == "true"){
+    echo '<div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Success!</strong> Your password was changed successfully.
+            Log out and try your new password.
+            </div>';
+} ?>

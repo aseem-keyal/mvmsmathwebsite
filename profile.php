@@ -36,8 +36,41 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./assets/bootstrap/js/jquery.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/bootstrap/js/raphael-min.js"></script>
-    <script src="./assets/bootstrap/js/g.raphael-min.js"></script>
-    <script src="./assets/bootstrap/js/g.pie-min.js"></script>
+    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	  <script type="text/javascript">
+	  $(document).ready(function(){
+			$("#changePassword").validate({
+				rules:{
+					pwd:{
+						required:true,
+						minlength: 6
+					},
+					cpwd:{
+						required:true,
+						equalTo: "#pwd"
+					},
+				},
+				messages:{
+					pwd:{
+						required:"Enter your password",
+						minlength:"Password must be minimum 6 characters"
+					},
+					cpwd:{
+						required:"Enter confirm password",
+						equalTo:"Password and Confirm Password must match"
+					},
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.control-group').addClass('error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.control-group').removeClass('error');
+					$(element).parents('.control-group').addClass('success');
+				}
+			});
+		});
+	  </script>
   </body>
 </html>

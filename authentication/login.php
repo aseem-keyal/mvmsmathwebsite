@@ -11,13 +11,19 @@
 
 	if ($result->num_rows == 0) {
 	   $login_success = False;
+       $user_exists = False;
 	} else {
 	   $userdata = $result->fetch_assoc();
 	   if (validate_password($password, $userdata['password']) && $userdata['approved'] == 1) {
 	      $login_success = True;
+          $user_exists = True;
+	   } elseif (validate_password($password, $userdata['password'])) {
+	      $login_success = False;
+          $user_exists = True;
 	   } else {
 	      $login_success = False;
-	   }
+          $user_exists = False;
+       }
 	}
 
 	$result->free();
@@ -36,7 +42,9 @@
 	   setcookie("email", $userdata['email'], $expire, '/');
 	   setcookie("grade", $userdata['grade'], $expire, '/');
 	   header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath');
-	} else {
+    } elseif ($user_exists) {
+	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/loginfailed.php?pending=True');
+    } else {
 	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/loginfailed.php');
 	}
 	?>

@@ -37,6 +37,6 @@
 	   setcookie("email", $userdata['email'], $expire, '/');
 	   header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/panel.php');
 	} else {
-	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin?login=failed');
+	  header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/loginfailed.php');
 	}
 	?>

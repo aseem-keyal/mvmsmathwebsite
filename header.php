@@ -5,7 +5,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
     <link href="/mvmsmath/assets/bootstrap/css/cyborg.css" rel="stylesheet">
     <style type="text/css">
       body {
@@ -20,7 +19,6 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/mvmsmath/assets/img/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/mvmsmath/assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/mvmsmath/assets/ico/apple-touch-icon-114-precomposed.png">
