@@ -7,6 +7,7 @@
     <?php include("../navbar/navbar.php"); ?>
     <div class="container">
     	  <form method="post" action="inputpset.php">
+        Number of Questions:
 	  	<select name="questioncount">
 			<?php
 				for ($i = 1; $i <= 100; $i++)

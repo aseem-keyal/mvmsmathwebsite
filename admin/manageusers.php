@@ -2,17 +2,44 @@
    include("checkauth.php");
    ?>
 <html>
-  <?php include("../header.php"); ?>
+    <?php include("../header.php"); ?>
   <body>
-  <?php include("../navbar/navbar.php"); ?>
-  <div class="container">
-    <a href="/mvmsmath/admin/viewusers.php">View Users</a><br />
-    <a href="/mvmsmath/admin/pendingusers.php">View Users Pending Approval</a><br />
-    <a href="/mvmsmath/admin/viewgroups.php">View Groups</a><br />
-    <a href="/mvmsmath/admin/managegroups.php">Manage Groups</a><br />
-  <?php include("../footer.php"); ?>
-    </div> <!-- /container -->
+    <?php include("../navbar/navbar.php"); ?>
+    <div class="container">
+    <div class="container-fluid">
+      <div class="span12">
+	<ul class="nav nav-tabs">
+	  <li><a href="#users" data-toggle="tab">View Users</a></li>
+	  <li><a href="#approval" data-toggle="tab">View Pending</a></li>
+	  <li><a href="#groups" data-toggle="tab">View/Manage Groups</a></li>
+	</ul>
+	<div class="tab-content">
+	  <div class="tab-pane active" id="users">
+	    <?php include("viewusers.php"); ?>
+	  </div>
+	  <div class="tab-pane" id="approval">
+	    <?php include("pendingusers.php"); ?>
+	  </div>
+ 	  <div class="tab-pane" id="groups">
+	  <?php include("viewgroups.php"); ?>
+	  <?php include("managegroups.php"); ?>
+	  </div>
+	</div> <!--/tab content-->
+    <?php if ($_GET['groups'] === "true") {
+        echo '
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Success!</strong> Groups modified successfully.
+            </div>';
+    }
+    ?>
+      </div> <!--/span-->
+    </div> <!-- /container-fluid -->
+    </div> <!--/container-->
+    <div class="container">
+    <?php include ("footer.php"); ?>
     </div>
+
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

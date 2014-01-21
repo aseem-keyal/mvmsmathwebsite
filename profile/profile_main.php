@@ -16,10 +16,12 @@ $mysqli->close();
 <p>Group: <?php echo $row['id'] ?></p>
 <p>Change Password:</p>
 <form id="changePassword" action="/mvmsmath/profile/change_password.php" method="post">
+<div class="control-group">
 <input type="password" name="pwd" id="pwd" placeholder="New password" />
-<br />
+</div>
+<div class="control-group">
 <input type="password" name="cpwd" id="cpwd" placeholder="Confirm new password" />
-<br />
+</div>
 <button type="submit" class="btn btn-danger">Change Password</button>
 </form>
 <?php if ($_GET["changed"] == "true"){
