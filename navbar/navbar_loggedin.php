@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/mvmsmath/index.php">MVMS Math Club</a>
+          <a class="brand" href="/mvmsmath/index.php">Nuptse Foundation</a>
           <div class="nav-collapse">
             <ul class="nav">
 	    	<?php

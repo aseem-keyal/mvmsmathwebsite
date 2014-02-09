@@ -1,7 +1,7 @@
 <?php
    include("checkauth.php");
    ?>
-    <table class="table">
+    <table class="table table-striped table-bordered">
       <tr>
 	<th>ID</th>
 	<th>Last name</th>

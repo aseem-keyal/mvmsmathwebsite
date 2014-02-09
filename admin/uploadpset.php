@@ -11,6 +11,7 @@ include("checkauth.php");
     $date = $_POST["expiry"];
     $groups = $_POST["group"];
     $name = $_POST["name"];
+    $id = $_COOKIE["admin_id"];
 	$temp = explode(".", $_FILES["problemsetpdf"]["name"]);
 	$temp2 = explode(".", $_FILES["anspdf"]["name"]);
       	if (end($temp) == "pdf" and end($temp2) == "pdf")
@@ -45,7 +46,7 @@ include("checkauth.php");
             $result = $mysqli->query($query2) or die(mysql_error());
             $mysqli->close();
             $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_questions");
-            $query = "insert into details values('ps$psid','$date','$name');";
+            $query = "insert into details (id, expire, name, uploaded, user) values('ps$psid','$date','$name','" . date("Y-m-d") . "','$id');";
             $result = $mysqli->query($query) or die(mysql_error());
             $query2 = "create table ps$psid(id INT, answer FLOAT, tolerance FLOAT, users_status TEXT, difficulty FLOAT);";
             $result = $mysqli->query($query2) or die(mysql_error());

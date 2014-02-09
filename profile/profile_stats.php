@@ -24,15 +24,15 @@ function percentage($var, $array){
     return $rounded;
 }
 
-echo ' <div class="span4">
+echo ' <div class="span6">
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<td>Statistic</td>
-				<td>My Value</td>
-				<td>My Percentage</td>
-				<td>Group Value</td>
-				<td>Group Percentage</td>
+				<th>Statistic</th>
+				<th>My Value</th>
+				<th>My Percentage</th>
+				<th>Group Value</th>
+				<th>Group Percentage</th>
 			</tr>
 		</thead>
 		<tbody>

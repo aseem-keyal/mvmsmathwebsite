@@ -12,6 +12,8 @@
 	  <li><a href="#users" data-toggle="tab">View Users</a></li>
 	  <li><a href="#approval" data-toggle="tab">View Pending</a></li>
 	  <li><a href="#groups" data-toggle="tab">View/Manage Groups</a></li>
+	  <li><a href="#stats" data-toggle="tab">View Users Stats</a></li>
+	  <li><a href="#emails" data-toggle="tab">View User Emails</a></li>
 	</ul>
 	<div class="tab-content">
 	  <div class="tab-pane active" id="users">
@@ -24,6 +26,12 @@
 	  <?php include("viewgroups.php"); ?>
 	  <?php include("managegroups.php"); ?>
 	  </div>
+ 	  <div class="tab-pane" id="stats">
+	  <?php include("viewusersstats.php"); ?>
+	  </div>
+ 	  <div class="tab-pane" id="emails">
+	  <?php include("viewemails.php"); ?>
+	  </div>
 	</div> <!--/tab content-->
     <?php if ($_GET['groups'] === "true") {
         echo '
@@ -32,6 +40,14 @@
                 <strong>Success!</strong> Groups modified successfully.
             </div>';
     }
+   if ($_GET['groups'] === "false") {
+        echo '
+            <div class="alert alert-failure">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Failure! </strong> User is not approved yet.
+            </div>';
+    }
+
     ?>
       </div> <!--/span-->
     </div> <!-- /container-fluid -->

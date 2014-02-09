@@ -1,6 +1,6 @@
 <?php
 $user = $_COOKIE['user_id'];
-$query = "select id from groups where members like '%$user%';";
+$query = "select id from groups where members like '%,$user,%';";
 $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
 $result = $mysqli->query($query) or die(mysql_error());
 $row = $result->fetch_assoc();

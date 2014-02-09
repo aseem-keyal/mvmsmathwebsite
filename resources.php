@@ -10,6 +10,7 @@
               <li><a href="http://www.artofproblemsolving.com/liz/Alcumus/index.php">AoPS Alcumus</a></li>
               <li><a href="http://www.maa.org/math-competitions">AMC Website</a></li>
               <li><a href="http://mathcounts.org/">Mathcounts Website</a></li>
+              <li><a href="https://khanacademy.org/">Khan Academy</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

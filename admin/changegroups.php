@@ -1,23 +1,30 @@
 <?php
-    $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
+    include('lib.php');
     $users = $_POST["users"];
     $group = $_POST["group"];
-    $query = "select members from groups where id = $group;";
-    $result = $mysqli->query($query);
-    while ($row = $result->fetch_assoc()){
-        $current = explode(",", $row['members']);
-        $userArray = explode(",", $users);
-        if ($_POST["operation"] == "remove") {
-            $result = array_diff($current, $userArray);
-        }
-        elseif ($_POST["operation"] == "add") {
-            $result = array_merge($current, $userArray);
-            $result = array_unique($result);
-        }
-        $final = implode(",", $result);
-        $query = "update groups set members = '$final' where id = $group;";
+    $operation = $_POST["operation"];
+    $current = explode(",", $users);
+    $mysqli = new mysqli("localhost", "mvmsmath", "mvmsmath", "mvmsmath_system");
+    foreach ($current as $id) {
+        $query = "select `group`,approved from users where id = $id;";
         $result = $mysqli->query($query) or die(mysql_error());
-        $mysqli->close();
-        header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/manageusers.php?groups=true');
+        $modified = 'false';
+        while ($row = $result->fetch_assoc()){
+            if ($row['group'] == 0 && $operation == "add" && $row['approved'] == 1){
+                addUser($id, $group);
+                $modified = 'true';
+            }
+            elseif ($row['group'] != 0 && $operation == "add" && $group != $row['group'] && $row['approved'] == 1){
+                removeUser($id, $row['group'], $group);
+                addUser($id, $group);
+                $modified = 'true';
+            }
+            elseif ($row['group'] != 0 && $operation == "remove" && $group == $row['group']){
+                removeUser($id, $group, NULL);
+                $modified = 'true';
+            }
+        }
     }
+    $mysqli->close();
+    header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/manageusers.php?groups=' . $modified);
 ?>

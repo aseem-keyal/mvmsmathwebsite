@@ -7,5 +7,5 @@
 	$mysqli->query($query);
 	$mysqli->close();
 
-	header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/pendingusers.php');
-?>	
+	header('Location: http://' . $_SERVER["SERVER_NAME"] . '/mvmsmath/admin/manageusers.php');
+?>

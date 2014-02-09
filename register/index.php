@@ -24,13 +24,31 @@
 				<div class="control-group">
 					<label class="control-label" for="input01">Grade</label>
 					<div class="controls">
-						<input type="radio" class="input-xlarge" id="user_grade" name="user_grade" value="6">6 <input type="radio" class="input-xlarge" id="user_grade" name="user_grade" value="7">7 <input type="radio" class="input-xlarge" id="user_grade" name="user_grade" value="8">8
+                        <select id="user_grade" name="user_grade">
+                        <?php
+                            for ($i = 1; $i <= 12; $i++) {
+                                echo "<option value='$i'>$i</option>";
+                            }
+                        ?>
+                        </select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="input01">Phone Number</label>
+					<div class="controls">
+						<input type="text" class="input-xlarge" id="user_phone" name="user_phone">
 					</div>
 				</div>
 				 <div class="control-group">
 					<label class="control-label" for="input01">Email</label>
 					  <div class="controls">
 						<input type="text" class="input-xlarge" id="user_email" name="user_email">
+					  </div>
+				</div>
+				 <div class="control-group">
+					<label class="control-label" for="input01">Parent Email</label>
+					  <div class="controls">
+						<input type="text" class="input-xlarge" id="parent_email" name="parent_email">
 					  </div>
 				</div>
 				<div class="control-group">
@@ -82,6 +100,10 @@
 					user_fname:"required",
 					user_lname:"required",
 					user_grade:"required",
+                    parent_email:{
+                        email: true
+                    },
+					user_phone:"required",
 					user_email:{
 							required:true,
 							email: true

@@ -6,8 +6,8 @@
 	<th>ID</th>
 	<th>Last name</th>
 	<th>First name</th>
-	<th>Email address</th>
-	<th>Actions</th>
+	<th>Group</th>
+	<th>Stats</th>
       </tr>
       <?php
 	 $query = "select * from users where approved=1 order by id asc;";
@@ -16,7 +16,10 @@
 	 $result = $mysqli->query($query);
 
          while ($row = $result->fetch_assoc()) {
-              echo "<tr><td>" . $row['id'] . "</td><td>" . $row['lname'] . "</td><td>" . $row['fname'] . "</td><td>" . $row['email'] . "</td><td><a href=\"/mvmsmath/admin/deleteuser.php?id=" . $row['id'] . "\">Delete user</a></td></tr>";
+            parse_str($row['stats'], $userStats);
+            if ($userStats['first'] != 0 or $userStats['second'] != 0 or $userStats['incorrect'] != 0){
+                echo "<tr><td>" . $row['id'] . "</td><td>" . $row['lname'] . "</td><td>" . $row['fname'] . "</td><td>" . $row['group'] . "</td><td>" . $row['stats'] . "</td></tr>";
+            }
          }
 
          $result->free();
